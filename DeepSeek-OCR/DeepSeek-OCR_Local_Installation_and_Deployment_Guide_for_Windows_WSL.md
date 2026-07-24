@@ -1,4 +1,17 @@
-# DeepSeek-OCR Windows WSL本地安装部署傻南
+---
+title: DeepSeek-OCR Windows WSL本地安装部署指南
+source: "https://github.com/k6G52m4Dz75W/VisualFrontier/blob/main/DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.md"
+author: Visual Frontier (https://github.com/k6G52m4Dz75W/VisualFrontier), DeepSeek
+created: 2026-07-24
+description: 本文提供了在Windows WSL中通过Miniconda、vLLM和国内镜像加速，完整安装部署DeepSeek-OCR模型并启动OpenAI兼容服务的实操指南。
+tags:
+  - DeepSeek-OCR
+  - WSL
+  - Windows Subsystem for Linux
+  - vLLM
+---
+
+# DeepSeek-OCR Windows WSL本地安装部署指南
 
 最后更新：`2027.7.24`
 
@@ -152,9 +165,9 @@ uv pip install -U vllm --torch-backend auto
 vllm serve ~/.cache/modelscope/models/deepseek-ai--DeepSeek-OCR/snapshots/master/ --served-model-name DeepSeek-OCR --logits_processors vllm.model_executor.models.deepseek_ocr:NGramPerReqLogitsProcessor --no-enable-prefix-caching --mm-processor-cache-gb 0
 ```
 
-> 推荐使用VibeOCR来进行OCR扫描任务：
-> VibeOCR - 智能端到端书籍OCR解决方案 — 多模型AI驱动，PDF到纯文本一键提取
-> <https://github.com/k6G52m4Dz75W/VibeOCR>
+推荐使用VibeOCR来进行OCR扫描任务：
+
+> - **[VibeOCR](https://github.com/k6G52m4Dz75W/VibeOCR)** - 智能端到端书籍OCR解决方案 — 多模型AI驱动，PDF到纯文本一键提取
 
 ## 【可选】克隆仓库
 

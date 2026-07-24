@@ -1,3 +1,16 @@
+---
+title: DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL
+source: "https://github.com/k6G52m4Dz75W/VisualFrontier/blob/main/DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md"
+author: Visual Frontier (https://github.com/k6G52m4Dz75W/VisualFrontier), DeepSeek
+created: 2026-07-24
+description: This article provides a practical guide for fully installing and deploying the DeepSeek-OCR model on Windows WSL using Miniconda, vLLM, and domestic mirror acceleration, and starting the OpenAI-compatible service.
+tags:
+  - DeepSeek-OCR
+  - WSL
+  - Windows Subsystem for Linux
+  - vLLM
+---
+
 # DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL
 
 Last updated: `2027.7.24`
@@ -152,9 +165,9 @@ Once the vLLM server is running, you can access it via the OpenAI-compatible end
 vllm serve ~/.cache/modelscope/models/deepseek-ai--DeepSeek-OCR/snapshots/master/ --served-model-name DeepSeek-OCR --logits_processors vllm.model_executor.models.deepseek_ocr:NGramPerReqLogitsProcessor --no-enable-prefix-caching --mm-processor-cache-gb 0
 ```
 
-> VibeOCR is recommended for OCR scanning tasks:
-> VibeOCR - Intelligent End‑to‑End Book OCR Solution — Multi‑model AI powered, PDF to plain text in one click
-> <https://github.com/k6G52m4Dz75W/VibeOCR>
+VibeOCR is recommended for OCR scanning tasks:
+
+> - **[VibeOCR](https://github.com/k6G52m4Dz75W/VibeOCR)** - Intelligent End‑to‑End Book OCR Solution — Multi‑model AI powered, PDF to plain text in one click
 
 ## [Optional] Clone the Repository
 

@@ -12,7 +12,9 @@
 
 Focusing on the latest advancements in Vision-Language Models (VLMs) and multimodal foundation models, this project offers hands‑on deployment guides and practical cookbooks. From closed‑source APIs to open‑weight models, from inference optimization to real‑world applications, we continuously track the AI vision power that truly "understands the world." Code and notes go hand in hand; theory and practice are two sides of the same coin — we aspire to walk alongside every visual AI developer and enthusiast on their journey forward.
 
+* * *
+
 目录 | Table of Contents
 
-- DeepSeek-OCR Windows WSL本地安装部署傻南
-- DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL
+- [DeepSeek-OCR Windows WSL本地安装部署指南](./DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.md)
+- [DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL](./DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md)
