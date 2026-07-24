@@ -13,7 +13,7 @@ tags:
 
 # 🛠️ DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL
 
-🕒 Last updated: `2027.7.24`
+🕒 Last updated: `2026.7.24`
 
 ## 0. 💻 Install/Update NVIDIA Drivers
 
