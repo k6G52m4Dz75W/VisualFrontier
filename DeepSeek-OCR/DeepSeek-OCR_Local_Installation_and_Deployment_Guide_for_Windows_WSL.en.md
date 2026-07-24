@@ -1,7 +1,7 @@
 ---
 title: DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL
 source: "https://github.com/k6G52m4Dz75W/VisualFrontier/blob/main/DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md"
-author: Visual Frontier (https://github.com/k6G52m4Dz75W/VisualFrontier), DeepSeek
+author: Visual Frontier (https://github.com/k6G52m4Dz75W/VisualFrontier), DeepSeek, Hy3@WorkBuddy
 created: 2026-07-24
 description: This article provides a practical guide for fully installing and deploying the DeepSeek-OCR model on Windows WSL using Miniconda, vLLM, and domestic mirror acceleration, and starting the OpenAI-compatible service.
 tags:
