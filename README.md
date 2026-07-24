@@ -16,7 +16,7 @@ Focusing on the latest advancements in Vision-Language Models (VLMs) and multimo
 
 # 📚 目录 | Table of Contents
 
-## ![DeepSeek](https://www.google.com/s2/favicons?domain=deepseek.com&sz=64) [DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR)
+## ![DeepSeek](https://www.google.com/s2/favicons?domain=deepseek.com&sz=32) [DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR)
 - 📄 [DeepSeek-OCR Windows WSL本地安装部署指南](./DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.md)
 - 📄 [DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL](./DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md)
 
