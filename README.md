@@ -26,7 +26,7 @@ Focusing on the latest advancements in Vision-Language Models (VLMs) and multimo
 
 > ⚠️ 注意：[DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR)模型无论是按照官方安装指引还是采用vLLM智能安装得到的结果，抑或是硅基流动平台服务部署的结果都极大概率会随机性出现文本乱码或缺失、重复大段文本的问题，强烈建议使用升级后的[DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2)模型替代。
 
-# 🏆 视觉模型和应用字符识别准确度实测排行榜 | OCR Accuracy Benchmark Leaderboard
+# 🏆 字符识别准确度实测排行榜 | OCR Accuracy Benchmark Leaderboard
 
 | 梯队 Tier | 模型 / 应用 Model / App | 准确度 Accuracy | 分数 Score |
 | :--: | :--- | :--- | :--: |
