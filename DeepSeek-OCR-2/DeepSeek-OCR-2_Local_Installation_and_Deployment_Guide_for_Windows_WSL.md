@@ -1,17 +1,17 @@
 ---
-title: DeepSeek-OCR Windows WSL本地安装部署指南
-source: "https://github.com/k6G52m4Dz75W/VisualFrontier/blob/main/DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.md"
+title: DeepSeek-OCR-2 Windows WSL本地安装部署指南
+source: "https://github.com/k6G52m4Dz75W/VisualFrontier/blob/main/DeepSeek-OCR-2/DeepSeek-OCR-2_Local_Installation_and_Deployment_Guide_for_Windows_WSL.md"
 author: Visual Frontier (https://github.com/k6G52m4Dz75W/VisualFrontier), DeepSeek, Hy3@WorkBuddy
-created: 2026-07-24
-description: 本文提供了在Windows WSL中通过Miniconda、vLLM和国内镜像加速，完整安装部署DeepSeek-OCR模型并启动OpenAI兼容服务的实操指南。
+created: 2026-07-25
+description: 本文提供了在Windows WSL中通过Miniconda、vLLM和国内镜像加速，完整安装部署DeepSeek-OCR-2模型并启动OpenAI兼容服务的实操指南。
 tags:
-  - DeepSeek-OCR
+  - DeepSeek-OCR-2
   - WSL
   - Windows Subsystem for Linux
   - vLLM
 ---
 
-# 🛠️ DeepSeek-OCR Windows WSL本地安装部署指南
+# 🛠️ DeepSeek-OCR-2 Windows WSL本地安装部署指南
 
 🕒 最后更新：`2026.7.25`
 
@@ -105,14 +105,14 @@ source ~/.bashrc
 ## 6. 📥 下载模型权重
 
 ```bash
-modelscope download --model deepseek-ai/DeepSeek-OCR
-# 默认下载目录：~/.cache/modelscope/models/deepseek-ai--DeepSeek-OCR
+modelscope download --model deepseek-ai/DeepSeek-OCR-2
+# 默认下载目录：~/.cache/modelscope/models/deepseek-ai--DeepSeek-OCR-2
 ```
 
 ### 🤗 【可选】使用huggingface下载
 
 ```bash
-hf download deepseek-ai/DeepSeek-OCR
+hf download deepseek-ai/DeepSeek-OCR-2
 ```
 
 ## 7. 🌱 安装并激活环境
@@ -120,8 +120,8 @@ hf download deepseek-ai/DeepSeek-OCR
 使用官方推荐python版本创建环境
 
 ```bash
-conda create -n deepseek-ocr python=3.12.9 -y
-conda activate deepseek-ocr
+conda create -n deepseek-ocr-2 python=3.12.9 -y
+conda activate deepseek-ocr-2
 ```
 
 ## 8. ⚙️ 安装cuda-toolkit并设置环境变量
@@ -138,7 +138,7 @@ echo 'export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH' > $CONDA_PREFIX/
 echo 'unset LD_LIBRARY_PATH' > $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
 # 设置完成后，重新激活环境即可生效
 conda deactivate
-conda activate deepseek-ocr
+conda activate deepseek-ocr-2
 ```
 
 ## 9. 🚀 安装vLLM及后端
@@ -153,7 +153,7 @@ conda activate deepseek-ocr
 当前使用以下方法安装才是最佳实践
 
 ```bash
-# 官方秘诀出处：https://docs.vllm.ai/projects/recipes/en/latest/DeepSeek/DeepSeek-OCR.html
+# 官方秘诀出处：https://docs.vllm.ai/projects/recipes/en/latest/DeepSeek/DeepSeek-OCR-2.html
 uv pip install -U vllm --torch-backend auto
 ```
 
@@ -162,7 +162,7 @@ uv pip install -U vllm --torch-backend auto
 启动vLLM服务后，可以通过OpenAI兼容接口直接访问：<http://127.0.0.1:8000/>
 
 ```bash
-vllm serve ~/.cache/modelscope/models/deepseek-ai--DeepSeek-OCR/snapshots/master/ --served-model-name DeepSeek-OCR --logits_processors vllm.model_executor.models.deepseek_ocr:NGramPerReqLogitsProcessor --no-enable-prefix-caching --mm-processor-cache-gb 0
+vllm serve ~/.cache/modelscope/models/deepseek-ai--DeepSeek-OCR-2/snapshots/master/ --served-model-name DeepSeek-OCR-2 --logits_processors vllm.model_executor.models.deepseek_ocr:NGramPerReqLogitsProcessor --no-enable-prefix-caching --mm-processor-cache-gb 0
 ```
 
 🔍 推荐使用VibeOCR来进行OCR扫描任务：
@@ -176,9 +176,5 @@ vllm serve ~/.cache/modelscope/models/deepseek-ai--DeepSeek-OCR/snapshots/master
 ```bash
 mkdir -p ~/workspace
 cd ~/workspace
-git clone https://github.com/deepseek-ai/DeepSeek-OCR.git
+git clone https://github.com/deepseek-ai/DeepSeek-OCR-2.git
 ```
-
-# ⚠️ 注意事项
-
-本模型无论是按照官方安装指引还是按照以上vLLM智能安装得到的结果，抑或是硅基流动平台服务部署的结果都极大概率会随机性出现文本乱码或缺失、重复大段文本的问题，强烈建议使用升级后的[DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2)模型替代。

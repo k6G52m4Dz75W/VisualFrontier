@@ -1,19 +1,19 @@
 ---
-title: DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL
-source: "https://github.com/k6G52m4Dz75W/VisualFrontier/blob/main/DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md"
+title: DeepSeek-OCR-2 Local Installation and Deployment Guide for Windows WSL
+source: "https://github.com/k6G52m4Dz75W/VisualFrontier/blob/main/DeepSeek-OCR-2/DeepSeek-OCR-2_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md"
 author: Visual Frontier (https://github.com/k6G52m4Dz75W/VisualFrontier), DeepSeek, Hy3@WorkBuddy
 created: 2026-07-24
-description: This article provides a practical guide for fully installing and deploying the DeepSeek-OCR model on Windows WSL using Miniconda, vLLM, and domestic mirror acceleration, and starting the OpenAI-compatible service.
+description: This article provides a practical guide for fully installing and deploying the DeepSeek-OCR-2 model on Windows WSL using Miniconda, vLLM, and domestic mirror acceleration, and starting the OpenAI-compatible service.
 tags:
-  - DeepSeek-OCR
+  - DeepSeek-OCR-2
   - WSL
   - Windows Subsystem for Linux
   - vLLM
 ---
 
-# 🛠️ DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL
+# 🛠️ DeepSeek-OCR-2 Local Installation and Deployment Guide for Windows WSL
 
-🕒 Last updated: `2026-07-25`
+🕒 Last updated: `2026.7.24`
 
 ## 0. 💻 Install/Update NVIDIA Drivers
 
@@ -105,14 +105,14 @@ source ~/.bashrc
 ## 6. 📥 Download Model Weights
 
 ```bash
-modelscope download --model deepseek-ai/DeepSeek-OCR
-# Default download directory: ~/.cache/modelscope/models/deepseek-ai--DeepSeek-OCR
+modelscope download --model deepseek-ai/DeepSeek-OCR-2
+# Default download directory: ~/.cache/modelscope/models/deepseek-ai--DeepSeek-OCR-2
 ```
 
 ### 🤗 [Optional] Download via Hugging Face
 
 ```bash
-hf download deepseek-ai/DeepSeek-OCR
+hf download deepseek-ai/DeepSeek-OCR-2
 ```
 
 ## 7. 🌱 Create and Activate Conda Environment
@@ -120,8 +120,8 @@ hf download deepseek-ai/DeepSeek-OCR
 Create a conda environment using the recommended Python version.
 
 ```bash
-conda create -n deepseek-ocr python=3.12.9 -y
-conda activate deepseek-ocr
+conda create -n deepseek-ocr-2 python=3.12.9 -y
+conda activate deepseek-ocr-2
 ```
 
 ## 8. ⚙️ Install CUDA Toolkit and Set Environment Variables
@@ -153,7 +153,7 @@ conda activate deepseek-ocr
 The following approach is the current best practice:
 
 ```bash
-# Official tip source: https://docs.vllm.ai/projects/recipes/en/latest/DeepSeek/DeepSeek-OCR.html
+# Official tip source: https://docs.vllm.ai/projects/recipes/en/latest/DeepSeek/DeepSeek-OCR-2.html
 uv pip install -U vllm --torch-backend auto
 ```
 
@@ -162,7 +162,7 @@ uv pip install -U vllm --torch-backend auto
 Once the vLLM server is running, you can access it via the OpenAI-compatible endpoint: <http://127.0.0.1:8000/>
 
 ```bash
-vllm serve ~/.cache/modelscope/models/deepseek-ai--DeepSeek-OCR/snapshots/master/ --served-model-name DeepSeek-OCR --logits_processors vllm.model_executor.models.deepseek_ocr:NGramPerReqLogitsProcessor --no-enable-prefix-caching --mm-processor-cache-gb 0
+vllm serve ~/.cache/modelscope/models/deepseek-ai--DeepSeek-OCR-2/snapshots/master/ --served-model-name DeepSeek-OCR-2 --logits_processors vllm.model_executor.models.deepseek_ocr:NGramPerReqLogitsProcessor --no-enable-prefix-caching --mm-processor-cache-gb 0
 ```
 
 🔍 VibeOCR is recommended for OCR scanning tasks:
@@ -176,9 +176,5 @@ The repository is for development reference only and is not required to run the 
 ```bash
 mkdir -p ~/workspace
 cd ~/workspace
-git clone https://github.com/deepseek-ai/DeepSeek-OCR.git
+git clone https://github.com/deepseek-ai/DeepSeek-OCR-2.git
 ```
-
-# ⚠️ Notes
-
-Whether you follow the official installation guide, use the intelligent vLLM installation described above, or use the model deployed via the SiliconFlow platform service, this model is highly likely to randomly produce garbled text, omit content, or repeat large passages. It is strongly recommended to use the upgraded [DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2) model as a replacement.
