@@ -46,7 +46,7 @@ Focusing on the latest advancements in Vision-Language Models (VLMs) and multimo
 | 🏅 C | DeepSeek-OCR | `███████████░░░░░░░░` | 55 |
 | 🏅 C | minimax-m3 | `████████░░░░░░░░░░░░` | 40 |
 
-> 梯队划分 Tier by：🥇 S（≥80）· 🥈 A（≥70）· 🥉 B（≥60）· 🏅 C（＜60）。
+> 梯队划分 Tiers：🥇 S（≥80）· 🥈 A（≥70）· 🥉 B（≥60）· 🏅 C（＜60）。
 
 > *最后更新 Last updated: 2026-7-25*
 
