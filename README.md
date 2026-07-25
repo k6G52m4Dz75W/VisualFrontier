@@ -26,6 +26,28 @@ Focusing on the latest advancements in Vision-Language Models (VLMs) and multimo
 
 > ⚠️ 注意：[DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR)模型无论是按照官方安装指引还是采用vLLM智能安装得到的结果，抑或是硅基流动平台服务部署的结果都极大概率会随机性出现文本乱码或缺失、重复大段文本的问题，强烈建议使用升级后的[DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2)模型替代。
 
-# 模型能力实测梯度榜
+# 🏆 视觉模型和应用字符识别准确度实测排行榜 | OCR Accuracy Benchmark Leaderboard
+
+| 梯队 | 模型 / 应用 | 准确度 | 分数 |
+| :--: | :--- | :--- | :--: |
+| 🥇 S | kimi-k3 | `██████████▏` | 85 |
+| 🥇 S | kimi-k2.6 | `██████████▏` | 85 |
+| 🥇 S | MinerU | `██████████▏` | 85 |
+| 🥇 S | 元宝（yuanbao） | `█████████▌` | 80 |
+| 🥈 A | paddleocr-vl-1.6 | `█████████` | 75 |
+| 🥈 A | paddleocr-vl-1.5 | `████████▍` | 70 |
+| 🥈 A | pp-ocrv6 | `████████▍` | 70 |
+| 🥈 A | 千问（qwen） | `████████▍` | 70 |
+| 🥈 A | nemotron-3-nano | `████████▍` | 70 |
+| 🥉 B | DeepSeek | `███████▊` | 65 |
+| 🥉 B | DeepSeek-OCR-2 | `███████▊` | 65 |
+| 🥉 B | DeepSeek-OCR | `███████▏` | 60 |
+| 🥉 B | step-3.7-flash | `███████▏` | 60 |
+| 🥉 B | 豆包（doubao） | `███████▏` | 60 |
+| 🏅 C | minimax-m3 | `████▊` | 40 |
+
+> 梯队划分：🥇 S（≥80）· 🥈 A（≥70）· 🥉 B（≥60）· 🏅 C（＜60）。方块条为字符识别准确度直观比例（满格约 97 级，真实 OCR 极少满分）。
+>
+> *注：部分 app 的后端模型与机制未公开，以上排名仅反映端到端识别准确度。*
 
 
