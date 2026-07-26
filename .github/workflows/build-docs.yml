@@ -1,0 +1,26 @@
+name: Build docs
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Generate docs from sources
+        run: python build.py
+
+      - name: Check no drift
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::生成的 .md 与源/片段不一致，请本地运行 'python build.py' 后重新提交"
+            git --no-pager diff
+            exit 1
+          fi

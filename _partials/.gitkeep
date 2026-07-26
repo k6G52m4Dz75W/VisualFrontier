@@ -1,0 +1,2 @@
+# 共享片段(partial)放这里。建议按语言分子目录，例如 zh/ 与 en/。
+# 源模板用 `<!-- include: _partials/zh/vibeocr.md -->` 引用本目录下的片段。
