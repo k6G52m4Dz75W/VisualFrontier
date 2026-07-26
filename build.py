@@ -26,6 +26,15 @@ INCLUDE_RE = re.compile(r"<!--\s*include:\s*([^\s]+)\s*-->")
 ROOT = "."
 
 
+def norm(t):
+    """忽略尾部空行差异，用于判断生成内容是否与已提交 .md 实质一致。"""
+    t = t.replace("\r\n", "\n")
+    lines = t.split("\n")
+    while lines and lines[-1].strip() == "":
+        lines.pop()
+    return "\n".join(lines)
+
+
 def resolve(rel):
     return os.path.normpath(os.path.join(ROOT, rel))
 
@@ -65,6 +74,12 @@ def main():
                 text = f.read()
             out = inline(text, set())
             out_path = os.path.join(dirpath, fn[: -len(".src.md")] + ".md")
+            if os.path.exists(out_path):
+                with open(out_path, encoding="utf-8") as f:
+                    old = f.read()
+                if norm(out) == norm(old):
+                    print(f"unchanged: {os.path.relpath(out_path, ROOT)}")
+                    continue
             with open(out_path, "w", encoding="utf-8") as f:
                 f.write(out)
             count += 1
