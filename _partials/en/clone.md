@@ -5,5 +5,5 @@ The repository is for development reference only and is not required to run the 
 ```bash
 mkdir -p ~/workspace
 cd ~/workspace
-git clone https://github.com/deepseek-ai/DeepSeek-OCR-2.git
+git clone https://github.com/deepseek-ai/{{MODEL_NAME}}.git
 ```

@@ -9,22 +9,23 @@ tags:
   - WSL
   - Windows Subsystem for Linux
   - vLLM
+vars: _partials/vars/deepseek-ocr-2.yml
 ---
 
 # 🛠️ DeepSeek-OCR-2 Local Installation and Deployment Guide for Windows WSL
 
 🕒 Last updated: `2026.7.24`
 
-<!-- include: _partials/en/common/nvidia-driver.md -->
-<!-- include: _partials/en/common/install-wsl.md -->
-<!-- include: _partials/en/common/start-ubuntu.md -->
-<!-- include: _partials/en/common/install-miniconda.md -->
-<!-- include: _partials/en/common/install-uv.md -->
-<!-- include: _partials/en/common/install-modelscope.md -->
-<!-- include: _partials/en/deepseek-ocr-2/weights.md -->
-<!-- include: _partials/en/deepseek-ocr-2/env.md -->
-<!-- include: _partials/en/deepseek-ocr-2/install-cuda.md -->
-<!-- include: _partials/en/deepseek-ocr-2/vllm.md -->
-<!-- include: _partials/en/deepseek-ocr-2/start-vllm.md -->
-<!-- include: _partials/en/common/vibeocr.md -->
-<!-- include: _partials/en/deepseek-ocr-2/clone.md -->
+<!-- include: _partials/en/nvidia-driver.md -->
+<!-- include: _partials/en/install-wsl.md -->
+<!-- include: _partials/en/start-ubuntu.md -->
+<!-- include: _partials/en/install-miniconda.md -->
+<!-- include: _partials/en/install-uv.md -->
+<!-- include: _partials/en/install-modelscope.md -->
+<!-- include: _partials/en/weights.md -->
+<!-- include: _partials/en/env.md -->
+<!-- include: _partials/en/install-cuda.md -->
+<!-- include: _partials/en/vllm.md -->
+<!-- include: _partials/en/start-vllm.md -->
+<!-- include: _partials/en/vibeocr.md -->
+<!-- include: _partials/en/clone.md -->

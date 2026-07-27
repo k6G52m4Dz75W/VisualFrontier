@@ -10,6 +10,6 @@
 The following approach is the current best practice:
 
 ```bash
-# Official tip source: https://docs.vllm.ai/projects/recipes/en/latest/DeepSeek/DeepSeek-OCR.html
+# Official tip source: https://docs.vllm.ai/projects/recipes/en/latest/DeepSeek/{{MODEL_NAME}}.html
 uv pip install -U vllm --torch-backend auto
 ```

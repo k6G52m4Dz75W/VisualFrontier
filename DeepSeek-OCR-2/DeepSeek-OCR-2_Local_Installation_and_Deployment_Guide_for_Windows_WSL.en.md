@@ -138,7 +138,7 @@ echo 'export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH' >> $CONDA_PREFIX
 echo 'unset LD_LIBRARY_PATH' > $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
 # After setting, reactivate the environment for changes to take effect
 conda deactivate
-conda activate deepseek-ocr
+conda activate deepseek-ocr-2
 ```
 
 ## 9. 🚀 Install vLLM and Backend

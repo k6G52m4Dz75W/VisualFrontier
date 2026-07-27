@@ -9,22 +9,23 @@ tags:
   - WSL
   - Windows Subsystem for Linux
   - vLLM
+vars: _partials/vars/deepseek-ocr-2.yml
 ---
 
 # 🛠️ DeepSeek-OCR-2 Windows WSL本地安装部署指南
 
 🕒 最后更新：`2026.7.25`
 
-<!-- include: _partials/zh/common/nvidia-driver.md -->
-<!-- include: _partials/zh/common/install-wsl.md -->
-<!-- include: _partials/zh/common/start-ubuntu.md -->
-<!-- include: _partials/zh/common/install-miniconda.md -->
-<!-- include: _partials/zh/common/install-uv.md -->
-<!-- include: _partials/zh/common/install-modelscope.md -->
-<!-- include: _partials/zh/deepseek-ocr-2/weights.md -->
-<!-- include: _partials/zh/deepseek-ocr-2/env.md -->
-<!-- include: _partials/zh/deepseek-ocr-2/install-cuda.md -->
-<!-- include: _partials/zh/deepseek-ocr-2/vllm.md -->
-<!-- include: _partials/zh/deepseek-ocr-2/start-vllm.md -->
-<!-- include: _partials/zh/common/vibeocr.md -->
-<!-- include: _partials/zh/deepseek-ocr-2/clone.md -->
+<!-- include: _partials/zh/nvidia-driver.md -->
+<!-- include: _partials/zh/install-wsl.md -->
+<!-- include: _partials/zh/start-ubuntu.md -->
+<!-- include: _partials/zh/install-miniconda.md -->
+<!-- include: _partials/zh/install-uv.md -->
+<!-- include: _partials/zh/install-modelscope.md -->
+<!-- include: _partials/zh/weights.md -->
+<!-- include: _partials/zh/env.md -->
+<!-- include: _partials/zh/install-cuda.md -->
+<!-- include: _partials/zh/vllm.md -->
+<!-- include: _partials/zh/start-vllm.md -->
+<!-- include: _partials/zh/vibeocr.md -->
+<!-- include: _partials/zh/clone.md -->

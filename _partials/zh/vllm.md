@@ -10,6 +10,6 @@
 当前使用以下方法安装才是最佳实践
 
 ```bash
-# 官方秘诀出处：https://docs.vllm.ai/projects/recipes/en/latest/DeepSeek/DeepSeek-OCR.html
+# 官方秘诀出处：https://docs.vllm.ai/projects/recipes/en/latest/DeepSeek/{{MODEL_NAME}}.html
 uv pip install -U vllm --torch-backend auto
 ```

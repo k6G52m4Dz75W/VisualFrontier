@@ -1,0 +1,3 @@
+# 变量定义：DeepSeek-OCR（基准 / 规范来源）
+MODEL_NAME: DeepSeek-OCR
+ENV_NAME: deepseek-ocr

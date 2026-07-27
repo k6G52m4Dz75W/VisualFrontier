@@ -12,5 +12,5 @@ echo 'export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH' >> $CONDA_PREFIX
 echo 'unset LD_LIBRARY_PATH' > $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
 # 设置完成后，重新激活环境即可生效
 conda deactivate
-conda activate deepseek-ocr-2
+conda activate {{ENV_NAME}}
 ```

@@ -9,25 +9,26 @@ tags:
   - WSL
   - Windows Subsystem for Linux
   - vLLM
+vars: _partials/vars/deepseek-ocr.yml
 ---
 
 # 🛠️ DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL
 
 🕒 Last updated: `2026-07-25`
 
-<!-- include: _partials/en/common/nvidia-driver.md -->
-<!-- include: _partials/en/common/install-wsl.md -->
-<!-- include: _partials/en/common/start-ubuntu.md -->
-<!-- include: _partials/en/common/install-miniconda.md -->
-<!-- include: _partials/en/common/install-uv.md -->
-<!-- include: _partials/en/common/install-modelscope.md -->
-<!-- include: _partials/en/deepseek-ocr/weights.md -->
-<!-- include: _partials/en/deepseek-ocr/env.md -->
-<!-- include: _partials/en/deepseek-ocr/install-cuda.md -->
-<!-- include: _partials/en/deepseek-ocr/vllm.md -->
-<!-- include: _partials/en/deepseek-ocr/start-vllm.md -->
-<!-- include: _partials/en/common/vibeocr.md -->
-<!-- include: _partials/en/deepseek-ocr/clone.md -->
+<!-- include: _partials/en/nvidia-driver.md -->
+<!-- include: _partials/en/install-wsl.md -->
+<!-- include: _partials/en/start-ubuntu.md -->
+<!-- include: _partials/en/install-miniconda.md -->
+<!-- include: _partials/en/install-uv.md -->
+<!-- include: _partials/en/install-modelscope.md -->
+<!-- include: _partials/en/weights.md -->
+<!-- include: _partials/en/env.md -->
+<!-- include: _partials/en/install-cuda.md -->
+<!-- include: _partials/en/vllm.md -->
+<!-- include: _partials/en/start-vllm.md -->
+<!-- include: _partials/en/vibeocr.md -->
+<!-- include: _partials/en/clone.md -->
 # ⚠️ Notes
 
 Whether you follow the official installation guide, use the intelligent vLLM installation described above, or use the model deployed via the SiliconFlow platform service, this model is highly likely to randomly produce garbled text, omit content, or repeat large passages. It is strongly recommended to use the upgraded [DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2) model as a replacement.
