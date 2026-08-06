@@ -13,7 +13,7 @@ tags:
 
 # 🛠️ DeepSeek-OCR-2 Windows WSL本地安装部署指南
 
-🕒 最后更新：`2026.7.26`
+🕒 最后更新：`2026.8.6`
 
 ## 0. 💻 安装/更新nvidia驱动程序
 
@@ -135,7 +135,7 @@ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 echo 'export LIBRARY_PATH=/usr/lib/wsl/lib:$LIBRARY_PATH' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 echo 'export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 #（可选）添加对应的卸载命令（退出环境时恢复）
-echo 'unset LD_LIBRARY_PATH' > $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
+echo 'unset LD_LIBRARY_PATH' >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
 # 设置完成后，重新激活环境即可生效
 conda deactivate
 conda activate deepseek-ocr-2

@@ -21,15 +21,15 @@ build.py — 把带 include 指令与变量的源模板 (*.src.md) 生成最终 
           ENV_NAME: deepseek-ocr-2
     - 未定义的变量保留原样（如 {{UNKNOWN}}），不报错。
     - 另含**内置自动变量**（日期，无需 yml，用户 yml 同名可覆盖）：
-        {{DATE_ZH}} / {{DATE_EN}}：取「当前源文件」最近一次 git 提交时间，
-            分别格式化为中文点号(2026.7.25) / 英文短横线(2026-7-25)。
-            用于模型文件自身「最后更新」等场景。
-        {{DATE_ZH:path}} / {{DATE_EN:path}}：取「path 指向的文件」最近一次
-            git 提交时间（path 相对仓库根目录），用于 README 目录里每条
-            指向不同模型文件、需要展示该模型文件各自「最后更新」时间的场景。
-            例：{{DATE_ZH:DeepSeek-OCR/DeepSeek-OCR_..._WSL.md}}
-      日期统一取 git 提交时间，使「重新生成」后自动同步，且对 CI 漂移检查
-      友好（提交后日期稳定，不会每次构建都产生 diff）。git 不可用时回退当前时间。
+        {{DATE_ZH}} / {{DATE_EN}}：取「本次 build 的时间」（重新生成那一刻的
+            日期），分别格式化为中文点号(2026.7.25) / 英文短横线(2026-7-25)。
+            用于「最后更新」等场景——改了部件重新 build，日期就是 build 当天。
+        {{DATE_ZH:path}} / {{DATE_EN:path}}：同为 build 时间（path 仅作占位，
+            保留语法兼容，不再按文件取时间）。
+      日期 = build 时间，直观且符合「修改 → 重新生成 → 日期刷新」的预期。
+      为兼容 CI 漂移检查：build.py 判断「是否需重写 .md」时会忽略「最后更新 /
+      Last updated」所在行，因此跨天重新 build 不会因日期变化产生无意义 diff，
+      仅在「除日期外」的内容真正变化时才重写并触发 CI 漂移告警。
 
 输出文件 = 同目录、同名但去掉 .src（README.src.md -> README.md）。
 生成时自动剔除 frontmatter 中的 `vars:` 行，保持 .md 整洁。
@@ -47,7 +47,6 @@ build.py — 把带 include 指令与变量的源模板 (*.src.md) 生成最终 
 import argparse
 import os
 import re
-import subprocess
 import sys
 from datetime import datetime
 
@@ -64,6 +63,21 @@ def norm(t):
     lines = t.split("\n")
     while lines and lines[-1].strip() == "":
         lines.pop()
+    return "\n".join(lines)
+
+
+DATE_LINE_RE = re.compile(r"最后更新|Last updated")
+
+
+def norm_ignore_date(t):
+    """同 norm，但额外忽略「最后更新 / Last updated」所在行。
+
+    日期取 build 时间，跨天重新 build 会因日期变化产生无意义 diff；
+    忽略这些行后，仅当「除日期外」的内容真正变化时才视为需重写，
+    从而兼容 CI 的漂移检查（内容漂移仍会触发告警）。
+    """
+    t = norm(t)
+    lines = [ln for ln in t.split("\n") if not DATE_LINE_RE.search(ln)]
     return "\n".join(lines)
 
 
@@ -112,25 +126,6 @@ def load_vars(path):
     return d
 
 
-def git_commit_date(rel_path):
-    """返回 rel_path 最近一次 git 提交的日期；git 不可用/无提交时回退今天。
-
-    rel_path 相对仓库根目录；用于把「最后更新」绑定到具体文件的提交时间，
-    从而重新生成后日期自动同步，且对 CI 漂移检查友好（提交后日期稳定）。
-    """
-    dt = datetime.now()
-    try:
-        out = subprocess.check_output(
-            ["git", "log", "-1", "--format=%ci", "--", rel_path.replace(os.sep, "/")],
-            cwd=ROOT, stderr=subprocess.DEVNULL,
-        ).decode("utf-8").strip()
-        if out:
-            dt = datetime.strptime(out[:19], "%Y-%m-%d %H:%M:%S")
-    except Exception:
-        pass
-    return dt
-
-
 def fmt_date(dt, lang):
     """lang=ZH -> 2026.7.25（点号）；lang=EN -> 2026-7-25（短横线）。"""
     if lang == "ZH":
@@ -138,26 +133,24 @@ def fmt_date(dt, lang):
     return f"{dt.year}-{dt.month}-{dt.day}"
 
 
-def builtin_vars(src_rel):
-    """内置自动变量：当前源文件自身的日期（{{DATE_ZH}}/{{DATE_EN}}）。
+def builtin_vars(build_time):
+    """内置自动变量：取「本次 build 的时间」（重新生成那一刻的日期）。
 
-    取该源文件最近一次 git 提交时间，使「重新生成」后日期自动同步，且对 CI
-    漂移检查友好（提交后日期稳定）。git 不可用时回退当前时间。
+    改了部件重新 build，日期就是 build 当天——直观且符合
+    「修改 → 重新生成 → 日期刷新」的预期。用户 yml 同名变量可覆盖。
     """
-    dt = git_commit_date(src_rel)
     return {
-        "DATE_ZH": fmt_date(dt, "ZH"),
-        "DATE_EN": fmt_date(dt, "EN"),
+        "DATE_ZH": fmt_date(build_time, "ZH"),
+        "DATE_EN": fmt_date(build_time, "EN"),
     }
 
 
-def substitute_vars(text, vars_dict):
+def substitute_vars(text, vars_dict, build_time):
     # 1) 先处理带路径的日期变量 {{DATE_ZH:path}} / {{DATE_EN:path}}
-    #    取 path 指向文件的 git 提交时间（README 目录每条指向不同模型文件）。
+    #    同样取 build 时间（path 仅作占位，保留语法兼容，不再按文件取时间）。
     def repl_date_path(m):
         lang = m.group(1)
-        path = m.group(2).strip()
-        return fmt_date(git_commit_date(path), lang)
+        return fmt_date(build_time, lang)
 
     text = DATE_PATH_RE.sub(repl_date_path, text)
 
@@ -238,6 +231,9 @@ def main():
     ap.add_argument("--root", default=".")
     args = ap.parse_args()
     ROOT = os.path.abspath(args.root)
+    # 本次 build 的统一时间：所有文档「最后更新」都取这一刻，
+    # 符合「改了部件重新 build → 日期刷新为 build 当天」的预期。
+    build_time = datetime.now()
 
     count = 0
     for dirpath, dirnames, files in os.walk(ROOT):
@@ -257,18 +253,15 @@ def main():
             vars_dict = load_vars(vars_path) if vars_path else {}
 
             # 1.5 注入内置自动变量（日期等）；用户 yml 同名变量可覆盖
-            #     注意：self 日期取「输出文件」(生成的 .md) 的 git 提交时间，
-            #     而非源 .src.md —— 读者看到的就是 .md，其「最后更新」应反映
-            #     该文件自身的修改时间。
+            #     日期统一取「本次 build 时间」，即重新生成那一刻的日期。
             out_path = os.path.join(dirpath, fn[: -len(".src.md")] + ".md")
-            out_rel = os.path.relpath(out_path, ROOT)
-            vars_dict.update(builtin_vars(out_rel))
+            vars_dict.update(builtin_vars(build_time))
 
             # 2. 递归内联 include
             out = inline(text, set())
 
             # 3. 变量替换（内联之后，确保片段内的 {{VAR}} 也被替换）
-            out = substitute_vars(out, vars_dict)
+            out = substitute_vars(out, vars_dict, build_time)
 
             # 4. 剔除 frontmatter 里的 vars: 行
             out = strip_vars_line(out)
@@ -288,7 +281,7 @@ def main():
             if os.path.exists(out_path):
                 with open(out_path, encoding="utf-8") as f:
                     old = f.read()
-                if norm(out) == norm(old):
+                if norm_ignore_date(out) == norm_ignore_date(old):
                     print(f"unchanged: {rel}")
                     continue
             with open(out_path, "w", encoding="utf-8") as f:
