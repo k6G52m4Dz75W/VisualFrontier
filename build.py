@@ -20,10 +20,16 @@ build.py — 把带 include 指令与变量的源模板 (*.src.md) 生成最终 
           MODEL_NAME: DeepSeek-OCR-2
           ENV_NAME: deepseek-ocr-2
     - 未定义的变量保留原样（如 {{UNKNOWN}}），不报错。
-    - 另含**内置自动变量**（无需 yml，用户 yml 同名可覆盖）：
-        DATE_ZH：中文点号日期，如 2026.7.25（取源文件最近一次 git 提交时间）
-        DATE_EN：英文短横线日期，如 2026-7-25（同上）
-      用于「最后更新」等场景，重新生成即自动同步，且对 CI 漂移检查友好。
+    - 另含**内置自动变量**（日期，无需 yml，用户 yml 同名可覆盖）：
+        {{DATE_ZH}} / {{DATE_EN}}：取「当前源文件」最近一次 git 提交时间，
+            分别格式化为中文点号(2026.7.25) / 英文短横线(2026-7-25)。
+            用于模型文件自身「最后更新」等场景。
+        {{DATE_ZH:path}} / {{DATE_EN:path}}：取「path 指向的文件」最近一次
+            git 提交时间（path 相对仓库根目录），用于 README 目录里每条
+            指向不同模型文件、需要展示该模型文件各自「最后更新」时间的场景。
+            例：{{DATE_ZH:DeepSeek-OCR/DeepSeek-OCR_..._WSL.md}}
+      日期统一取 git 提交时间，使「重新生成」后自动同步，且对 CI 漂移检查
+      友好（提交后日期稳定，不会每次构建都产生 diff）。git 不可用时回退当前时间。
 
 输出文件 = 同目录、同名但去掉 .src（README.src.md -> README.md）。
 生成时自动剔除 frontmatter 中的 `vars:` 行，保持 .md 整洁。
@@ -47,6 +53,8 @@ from datetime import datetime
 
 INCLUDE_RE = re.compile(r"<!--\s*include:\s*([^\s]+)\s*-->")
 VARS_RE = re.compile(r"\{\{\s*([A-Za-z0-9_]+)\s*\}\}")
+# 带路径的日期变量：{{DATE_ZH:path}} / {{DATE_EN:path}}
+DATE_PATH_RE = re.compile(r"\{\{\s*DATE_(ZH|EN)\s*:\s*([^}]*?)\s*\}\}")
 ROOT = "."
 
 
@@ -104,34 +112,56 @@ def load_vars(path):
     return d
 
 
-def builtin_vars(src_rel):
-    """内置自动变量：日期（按源文件最近一次 git 提交时间，中英文分别格式化）。
+def git_commit_date(rel_path):
+    """返回 rel_path 最近一次 git 提交的日期；git 不可用/无提交时回退今天。
 
-    - DATE_ZH：中文点号风格 2026.7.25（保留用户本地化习惯）
-    - DATE_EN：英文短横线风格 2026-7-25
-    取该源文件最近提交时间，使「重新生成」后日期自动同步，且对 CI 漂移检查
-    友好（提交后日期稳定，不会每次构建都产生 diff）。git 不可用时回退当前时间。
+    rel_path 相对仓库根目录；用于把「最后更新」绑定到具体文件的提交时间，
+    从而重新生成后日期自动同步，且对 CI 漂移检查友好（提交后日期稳定）。
     """
     dt = datetime.now()
     try:
         out = subprocess.check_output(
-            ["git", "log", "-1", "--format=%ci", "--", src_rel.replace(os.sep, "/")],
+            ["git", "log", "-1", "--format=%ci", "--", rel_path.replace(os.sep, "/")],
             cwd=ROOT, stderr=subprocess.DEVNULL,
         ).decode("utf-8").strip()
         if out:
             dt = datetime.strptime(out[:19], "%Y-%m-%d %H:%M:%S")
     except Exception:
         pass
+    return dt
+
+
+def fmt_date(dt, lang):
+    """lang=ZH -> 2026.7.25（点号）；lang=EN -> 2026-7-25（短横线）。"""
+    if lang == "ZH":
+        return f"{dt.year}.{dt.month}.{dt.day}"
+    return f"{dt.year}-{dt.month}-{dt.day}"
+
+
+def builtin_vars(src_rel):
+    """内置自动变量：当前源文件自身的日期（{{DATE_ZH}}/{{DATE_EN}}）。
+
+    取该源文件最近一次 git 提交时间，使「重新生成」后日期自动同步，且对 CI
+    漂移检查友好（提交后日期稳定）。git 不可用时回退当前时间。
+    """
+    dt = git_commit_date(src_rel)
     return {
-        "DATE_ZH": f"{dt.year}.{dt.month}.{dt.day}",
-        "DATE_EN": f"{dt.year}-{dt.month}-{dt.day}",
+        "DATE_ZH": fmt_date(dt, "ZH"),
+        "DATE_EN": fmt_date(dt, "EN"),
     }
 
 
 def substitute_vars(text, vars_dict):
-    if not vars_dict:
-        return text
+    # 1) 先处理带路径的日期变量 {{DATE_ZH:path}} / {{DATE_EN:path}}
+    #    取 path 指向文件的 git 提交时间（README 目录每条指向不同模型文件）。
+    def repl_date_path(m):
+        lang = m.group(1)
+        path = m.group(2).strip()
+        return fmt_date(git_commit_date(path), lang)
 
+    text = DATE_PATH_RE.sub(repl_date_path, text)
+
+    # 2) 再处理普通变量（含 {{DATE_ZH}}/{{DATE_EN}} 等内置变量）
     def repl(m):
         key = m.group(1)
         return vars_dict.get(key, m.group(0))
@@ -162,6 +192,14 @@ def self_check(out, rel_path):
     if leftover:
         errors.append(
             f"存在未替换的变量：{', '.join(sorted(leftover))}（vars 文件路径或变量名错误）"
+        )
+    # 3.5) 不得残留带路径的日期变量（如 {{DATE_ZH:bad/path.md}}）
+    leftover_path = set(
+        f"DATE_{m.group(1)}:{m.group(2).strip()}" for m in DATE_PATH_RE.finditer(out)
+    )
+    if leftover_path:
+        errors.append(
+            f"存在未解析的带路径日期变量：{', '.join(sorted(leftover_path))}（路径错误）"
         )
     # 4) 标题层级不得跳级（拼接边界丢失父级标题会触发）
     #    注意：代码块内的 `# 注释` 不是标题，必须先跳过围栏内部再扫描。
@@ -219,8 +257,12 @@ def main():
             vars_dict = load_vars(vars_path) if vars_path else {}
 
             # 1.5 注入内置自动变量（日期等）；用户 yml 同名变量可覆盖
-            src_rel = os.path.relpath(src, ROOT)
-            vars_dict.update(builtin_vars(src_rel))
+            #     注意：self 日期取「输出文件」(生成的 .md) 的 git 提交时间，
+            #     而非源 .src.md —— 读者看到的就是 .md，其「最后更新」应反映
+            #     该文件自身的修改时间。
+            out_path = os.path.join(dirpath, fn[: -len(".src.md")] + ".md")
+            out_rel = os.path.relpath(out_path, ROOT)
+            vars_dict.update(builtin_vars(out_rel))
 
             # 2. 递归内联 include
             out = inline(text, set())
@@ -233,8 +275,6 @@ def main():
 
             # 5. 归一化末尾：只保留单个换行，避免 include 指令后换行残留空行
             out = out.rstrip("\n") + "\n"
-
-            out_path = os.path.join(dirpath, fn[: -len(".src.md")] + ".md")
 
             # 5.5 拼接专属语法自检（门禁）
             rel = os.path.relpath(out_path, ROOT)

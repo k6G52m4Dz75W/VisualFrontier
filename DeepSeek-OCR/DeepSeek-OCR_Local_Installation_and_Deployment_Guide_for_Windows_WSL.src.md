@@ -14,7 +14,7 @@ vars: _partials/vars/deepseek-ocr.yml
 
 # 🛠️ DeepSeek-OCR Windows WSL本地安装部署指南
 
-🕒 最后更新：`2026.7.25`
+🕒 最后更新：`{{DATE_ZH}}`
 
 <!-- include: _partials/zh/nvidia-driver.md -->
 <!-- include: _partials/zh/install-wsl.md -->

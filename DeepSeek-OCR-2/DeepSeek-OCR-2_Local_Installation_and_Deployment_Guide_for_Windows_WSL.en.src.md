@@ -14,7 +14,7 @@ vars: _partials/vars/deepseek-ocr-2.yml
 
 # 🛠️ DeepSeek-OCR-2 Local Installation and Deployment Guide for Windows WSL
 
-🕒 Last updated: `2026.7.24`
+🕒 Last updated: `{{DATE_EN}}`
 
 <!-- include: _partials/en/nvidia-driver.md -->
 <!-- include: _partials/en/install-wsl.md -->

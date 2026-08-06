@@ -17,12 +17,12 @@ Focusing on the latest advancements in Vision-Language Models (VLMs) and multimo
 # 📚 目录 | Table of Contents
 
 ## ![DeepSeek](https://www.google.com/s2/favicons?domain=deepseek.com&sz=32) [DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR)
-- 📄 [DeepSeek-OCR Windows WSL本地安装部署指南](./DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.md) - 最后更新：{{DATE_ZH}}
-- 📄 [DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL](./DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md) - Last updated: {{DATE_EN}}
+- 📄 [DeepSeek-OCR Windows WSL本地安装部署指南](./DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.md) - 最后更新：{{DATE_ZH:DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.md}}
+- 📄 [DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL](./DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md) - Last updated: {{DATE_EN:DeepSeek-OCR/DeepSeek-OCR_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md}}
 
 ## ![DeepSeek](https://www.google.com/s2/favicons?domain=deepseek.com&sz=32) [DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2)
-- 📄 [DeepSeek-OCR-2 Windows WSL本地安装部署指南](./DeepSeek-OCR-2/DeepSeek-OCR-2_Local_Installation_and_Deployment_Guide_for_Windows_WSL.md) - 最后更新：{{DATE_ZH}}
-- 📄 [DeepSeek-OCR-2 Local Installation and Deployment Guide for Windows WSL](./DeepSeek-OCR-2/DeepSeek-OCR-2_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md) - Last updated: {{DATE_EN}}
+- 📄 [DeepSeek-OCR-2 Windows WSL本地安装部署指南](./DeepSeek-OCR-2/DeepSeek-OCR-2_Local_Installation_and_Deployment_Guide_for_Windows_WSL.md) - 最后更新：{{DATE_ZH:DeepSeek-OCR-2/DeepSeek-OCR-2_Local_Installation_and_Deployment_Guide_for_Windows_WSL.md}}
+- 📄 [DeepSeek-OCR-2 Local Installation and Deployment Guide for Windows WSL](./DeepSeek-OCR-2/DeepSeek-OCR-2_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md) - Last updated: {{DATE_EN:DeepSeek-OCR-2/DeepSeek-OCR-2_Local_Installation_and_Deployment_Guide_for_Windows_WSL.en.md}}
 
 > ⚠️ 注意：[DeepSeek-OCR](https://github.com/deepseek-ai/DeepSeek-OCR)模型无论是按照官方安装指引还是采用vLLM智能安装得到的结果，抑或是硅基流动平台服务部署的结果都极大概率会随机性出现文本乱码或缺失、重复大段文本的问题，强烈建议使用升级后的[DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2)模型替代。
 
