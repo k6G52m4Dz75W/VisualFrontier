@@ -20,6 +20,10 @@ build.py — 把带 include 指令与变量的源模板 (*.src.md) 生成最终 
           MODEL_NAME: DeepSeek-OCR-2
           ENV_NAME: deepseek-ocr-2
     - 未定义的变量保留原样（如 {{UNKNOWN}}），不报错。
+    - 另含**内置自动变量**（无需 yml，用户 yml 同名可覆盖）：
+        DATE_ZH：中文点号日期，如 2026.7.25（取源文件最近一次 git 提交时间）
+        DATE_EN：英文短横线日期，如 2026-7-25（同上）
+      用于「最后更新」等场景，重新生成即自动同步，且对 CI 漂移检查友好。
 
 输出文件 = 同目录、同名但去掉 .src（README.src.md -> README.md）。
 生成时自动剔除 frontmatter 中的 `vars:` 行，保持 .md 整洁。
@@ -37,7 +41,9 @@ build.py — 把带 include 指令与变量的源模板 (*.src.md) 生成最终 
 import argparse
 import os
 import re
+import subprocess
 import sys
+from datetime import datetime
 
 INCLUDE_RE = re.compile(r"<!--\s*include:\s*([^\s]+)\s*-->")
 VARS_RE = re.compile(r"\{\{\s*([A-Za-z0-9_]+)\s*\}\}")
@@ -96,6 +102,30 @@ def load_vars(path):
             k, v = line.split(":", 1)
             d[k.strip()] = v.strip()
     return d
+
+
+def builtin_vars(src_rel):
+    """内置自动变量：日期（按源文件最近一次 git 提交时间，中英文分别格式化）。
+
+    - DATE_ZH：中文点号风格 2026.7.25（保留用户本地化习惯）
+    - DATE_EN：英文短横线风格 2026-7-25
+    取该源文件最近提交时间，使「重新生成」后日期自动同步，且对 CI 漂移检查
+    友好（提交后日期稳定，不会每次构建都产生 diff）。git 不可用时回退当前时间。
+    """
+    dt = datetime.now()
+    try:
+        out = subprocess.check_output(
+            ["git", "log", "-1", "--format=%ci", "--", src_rel.replace(os.sep, "/")],
+            cwd=ROOT, stderr=subprocess.DEVNULL,
+        ).decode("utf-8").strip()
+        if out:
+            dt = datetime.strptime(out[:19], "%Y-%m-%d %H:%M:%S")
+    except Exception:
+        pass
+    return {
+        "DATE_ZH": f"{dt.year}.{dt.month}.{dt.day}",
+        "DATE_EN": f"{dt.year}-{dt.month}-{dt.day}",
+    }
 
 
 def substitute_vars(text, vars_dict):
@@ -187,6 +217,10 @@ def main():
             # 1. 读取变量文件
             vars_path = extract_vars_path(text)
             vars_dict = load_vars(vars_path) if vars_path else {}
+
+            # 1.5 注入内置自动变量（日期等）；用户 yml 同名变量可覆盖
+            src_rel = os.path.relpath(src, ROOT)
+            vars_dict.update(builtin_vars(src_rel))
 
             # 2. 递归内联 include
             out = inline(text, set())
