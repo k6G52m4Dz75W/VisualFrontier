@@ -81,6 +81,40 @@ def norm_ignore_date(t):
     return "\n".join(lines)
 
 
+LANG_LINE_RE = re.compile(r"^\s*<!--\s*(zh|en)\s*-->\s*(.*)$")
+
+
+def src_lang(fn):
+    """根据顶层 src 文件名判定目标语言：.en.src.md → en，其余 → zh。
+
+    语言是文档级（整篇中文或英文），所有被 include 的部件都按同一语言过滤，
+    故在 inline 展开后统一过滤一次即可，无需逐层传递。
+    """
+    return "en" if fn.endswith(".en.src.md") else "zh"
+
+
+def filter_lang(text, lang):
+    """按目标语言抽取行：
+
+    - 以 ``<!-- zh -->`` / ``<!-- en -->`` 开头的行：仅当标记语言 == lang 时
+      保留，并去掉标记前缀；另一语言的标记行整行丢弃。
+    - 其余行（命令、代码块、空行、include 指令、普通说明等）原样保留，
+      视为中英共用。
+
+    这样「命令/无标记行共用、说明文字逐行分语言」，一个部件文件即可双语同体，
+    改一处中英同步，且不会漏改。
+    """
+    out = []
+    for line in text.split("\n"):
+        m = LANG_LINE_RE.match(line)
+        if m:
+            if m.group(1) == lang:
+                out.append(m.group(2))
+        else:
+            out.append(line)
+    return "\n".join(out)
+
+
 def resolve(rel):
     return os.path.normpath(os.path.join(ROOT, rel))
 
@@ -247,6 +281,7 @@ def main():
             src = os.path.join(dirpath, fn)
             with open(src, encoding="utf-8") as f:
                 text = f.read()
+            lang = src_lang(fn)
 
             # 1. 读取变量文件
             vars_path = extract_vars_path(text)
@@ -259,6 +294,8 @@ def main():
 
             # 2. 递归内联 include
             out = inline(text, set())
+            # 2.5 按目标语言过滤行（去掉另一语言的 <!-- zh -->/<!-- en --> 标记行）
+            out = filter_lang(out, lang)
 
             # 3. 变量替换（内联之后，确保片段内的 {{VAR}} 也被替换）
             out = substitute_vars(out, vars_dict, build_time)

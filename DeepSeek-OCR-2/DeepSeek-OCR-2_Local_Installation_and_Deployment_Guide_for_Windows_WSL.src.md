@@ -24,7 +24,7 @@ vars: _partials/vars/deepseek-ocr-2.yml
 <!-- include: _partials/zh/install-modelscope.md -->
 <!-- include: _partials/zh/weights.md -->
 <!-- include: _partials/zh/env.md -->
-<!-- include: _partials/zh/install-cuda.md -->
+<!-- include: _partials/install-cuda.md -->
 <!-- include: _partials/zh/vllm.md -->
 <!-- include: _partials/zh/start-vllm.md -->
 <!-- include: _partials/zh/vibeocr.md -->

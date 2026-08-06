@@ -13,7 +13,7 @@ tags:
 
 # 🛠️ DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL
 
-🕒 Last updated: `2026-8-6`
+🕒 Last updated: `2026-8-7`
 
 ## 0. 💻 Install/Update NVIDIA Drivers
 
@@ -135,7 +135,7 @@ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 echo 'export LIBRARY_PATH=/usr/lib/wsl/lib:$LIBRARY_PATH' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 echo 'export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 # (Optional) Add corresponding unset commands when deactivating
-echo 'unset LD_LIBRARY_PATH' > $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
+echo 'unset LD_LIBRARY_PATH' >> $CONDA_PREFIX/etc/conda/deactivate.d/env_vars.sh
 # After setting, reactivate the environment for changes to take effect
 conda deactivate
 conda activate deepseek-ocr
