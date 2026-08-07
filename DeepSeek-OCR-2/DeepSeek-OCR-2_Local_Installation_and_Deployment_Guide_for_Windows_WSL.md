@@ -17,14 +17,14 @@ tags:
 
 ## 01. 💻 安装/更新nvidia驱动程序
 
-访问官方网站入口，选择GeForce，下载最新驱动程序
+访问官方驱动下载入口，选择GeForce，下载最新驱动程序
 
-- 中国官网：<https://www.nvidia.cn/drivers/>
+- 官方驱动下载入口（中国站）：<https://www.nvidia.cn/drivers/>
 
 > 当前最新版本：`610.88`
-> 官方下载页：<https://www.nvidia.cn/zh-cn/drivers/details/274384/>
+> 最新版本下载页面：<https://www.nvidia.cn/zh-cn/drivers/details/274384/>
 
-> 💡 在下载页中点击 **下载** 按钮即可下载（页面自带合法 Referer，不会报 403）。
+> 💡 在最新版本下载页面中点击 **下载** 按钮即可下载（页面自带合法 Referer，不会报 403）。
 
 **进阶用法：命令行直接下载**
 

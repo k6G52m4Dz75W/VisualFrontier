@@ -17,14 +17,14 @@ tags:
 
 ## 01. 💻 Install/Update NVIDIA Drivers
 
-Visit the official website entry, select GeForce, and download the latest driver.
+Visit the official driver download portal, select GeForce, and download the latest driver.
 
-- Global official site: <https://www.nvidia.com/en-us/drivers/>
+- Official driver download portal (Global): <https://www.nvidia.com/en-us/drivers/>
 
 > Current latest version: `610.88`
-> Official download page: <https://www.nvidia.com/en-us/drivers/details/274384/>
+> Latest version download page: <https://www.nvidia.com/en-us/drivers/details/274384/>
 
-> 💡 Click the **Download** button on the page to download (the page provides a valid Referer, so no 403).
+> 💡 Click the **Download** button on the latest version download page to download (the page provides a valid Referer, so no 403).
 
 **Advanced: download directly from the command line**
 
