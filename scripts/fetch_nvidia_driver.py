@@ -22,9 +22,11 @@ fetch_nvidia_driver.py — 一键查询并更新 NVIDIA 驱动版本号与下载
     - Referer 为 nvidia.com / nvidia.cn  -> 200，可下载。
     - Referer 为第三方域名或直接地址栏打开（无 Referer）-> 403 Forbidden。
   因此裸 exe 直链从文档里点出去几乎必 403（不是链接拼错）。
-  解法：主下载链接改用官方【下载页 DetailsURL】（实测 200 正常打开，无 403），
-  用户在页面上点它自带的 Download 按钮即可（此时 Referer 合法）。裸 exe 直链
-  仅作为“备用”保留，并在文档中标注可能 403 的提示。
+  解法：文档主下载链接改用官方【下载页 DetailsURL】（实测 200 正常打开，
+  无 403），普通用户在页面上点它自带的 Download 按钮即可（此时 Referer 合法）。
+  裸 exe 直链【不再作为可点击链接】——而是嵌入 nvidia-driver 部件的 curl
+  命令（已带 Referer 头），懂命令行的人复制执行即可直接下载，
+  既避免普通用户误点报 403，又给进阶用户一条便捷通道。
 
 工作机制：
   1. 调用 GFE DriverManualLookup，过滤出 GeForce Game Ready 驱动（WHQL=1），
