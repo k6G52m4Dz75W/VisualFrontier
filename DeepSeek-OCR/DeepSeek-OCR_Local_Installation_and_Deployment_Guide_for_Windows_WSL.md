@@ -13,20 +13,20 @@ tags:
 
 # 🛠️ DeepSeek-OCR Windows WSL本地安装部署指南
 
-🕒 最后更新：`2026.8.7`
+🕒 最后更新：`2026.8.8`
 
 ## 01. 💻 安装/更新nvidia驱动程序
 
 访问官方网站入口，选择GeForce，下载最新驱动程序
 
-- 中文官网：<https://www.nvidia.cn/drivers/>
+- 中国官网：<https://www.nvidia.cn/drivers/>
 - 全球官网：<https://www.nvidia.com/en-us/drivers/>
 
 > 当前最新版本：`610.88`
 > 官方下载页（中国，推荐）：<https://www.nvidia.cn/zh-cn/drivers/details/274384/>
-> 官方下载页（全球，推荐）：<https://www.nvidia.com/en-us/drivers/details/274384/>
+> 官方下载页（全球）：<https://www.nvidia.com/en-us/drivers/details/274384/>
 
-> 💡 在下载页中点击 **Download** 按钮即可下载（页面自带合法 Referer，不会报 403）。
+> 💡 在下载页中点击 **下载** 按钮即可下载（页面自带合法 Referer，不会报 403）。
 
 **进阶用法：命令行直接下载**
 

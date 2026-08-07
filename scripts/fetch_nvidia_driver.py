@@ -28,6 +28,11 @@ fetch_nvidia_driver.py — 一键查询并更新 NVIDIA 驱动版本号与下载
   命令（已带 Referer 头），懂命令行的人复制执行即可直接下载，
   既避免普通用户误点报 403，又给进阶用户一条便捷通道。
 
+语言自适应：shared.yml 同时产出 cn/us 两套下载页与裸 exe 直链；
+  nvidia-driver 部件用 <!-- zh -->/<!-- en --> 标记按文档语言二选一——
+  中文文档用 cn 直链 + nvidia.cn 的 Referer，英文文档用 us 直链 + nvidia.com
+  的 Referer，保证各自读者都从就近官网下载、且命令行直链不被 403 挡。
+
 工作机制：
   1. 调用 GFE DriverManualLookup，过滤出 GeForce Game Ready 驱动（WHQL=1），
      按发布时间取最新一条，得到 version / 官方 DownloadURL / 官方 DetailsURL。

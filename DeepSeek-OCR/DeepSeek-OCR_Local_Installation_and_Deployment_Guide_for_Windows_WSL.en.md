@@ -13,7 +13,7 @@ tags:
 
 # 🛠️ DeepSeek-OCR Local Installation and Deployment Guide for Windows WSL
 
-🕒 Last updated: `2026-8-7`
+🕒 Last updated: `2026-8-8`
 
 ## 01. 💻 Install/Update NVIDIA Drivers
 
@@ -23,8 +23,8 @@ Visit the official website entry, select GeForce, and download the latest driver
 - Global official site: <https://www.nvidia.com/en-us/drivers/>
 
 > Current latest version: `610.88`
-> Official download page (China, recommended): <https://www.nvidia.cn/zh-cn/drivers/details/274384/>
 > Official download page (Global, recommended): <https://www.nvidia.com/en-us/drivers/details/274384/>
+> Official download page (China): <https://www.nvidia.cn/zh-cn/drivers/details/274384/>
 
 > 💡 Click the **Download** button on the page to download (the page provides a valid Referer, so no 403).
 
@@ -33,7 +33,7 @@ Visit the official website entry, select GeForce, and download the latest driver
 If you are comfortable with the command line (headless, remote server, or automation), copy the command below to fetch the installer directly. The `Referer` header is built in to bypass NVIDIA CDN's 403 hotlink restriction — just paste and run it in a terminal:
 
 ```bash
-curl -L --referer "https://www.nvidia.cn/" -O "https://cn.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe"
+curl -L --referer "https://www.nvidia.com/" -O "https://us.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe"
 ```
 
 ## 02. 🪟 Install WSL
