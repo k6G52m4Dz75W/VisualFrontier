@@ -20,6 +20,14 @@ build.py — 把带 include 指令与变量的源模板 (*.src.md) 生成最终 
           MODEL_NAME: DeepSeek-OCR-2
           ENV_NAME: deepseek-ocr-2
     - 未定义的变量保留原样（如 {{UNKNOWN}}），不报错。
+    - 另含**步骤自动编号占位符**（无需 yml，由 build.py 在 inline + 语言过滤后
+      统一计算，zh/en 两版序号必然一致）：
+        {{STEP}}        ：普通顺序步骤，按文档顺序补零 2 位（01, 02, ...）
+        {{STEP_GROUP}} ：并行“二选一”组的首个选项（如 02-A）
+        {{STEP_ALT}}   ：同组后续选项，大号相同、字母递增（02-B, 02-C）
+        {{OPTIONAL}}   ：可选步骤/小节的“（可选）/[Optional]”标签，在语言过滤阶段
+            按当前语言展开（zh → 【可选】，en → [Optional]）
+      可选步骤不含 {{STEP}}，不消耗序号，排在编号步骤之间但不带数字。
     - 另含**内置自动变量**（日期，无需 yml，用户 yml 同名可覆盖）：
         {{DATE_ZH}} / {{DATE_EN}}：取「本次 build 的时间」（重新生成那一刻的
             日期），分别格式化为中文点号(2026.7.25) / 英文短横线(2026-7-25)。
@@ -97,7 +105,8 @@ def filter_lang(text, lang):
     """按目标语言抽取行：
 
     - 以 ``<!-- zh -->`` / ``<!-- en -->`` 开头的行：仅当标记语言 == lang 时
-      保留，并去掉标记前缀；另一语言的标记行整行丢弃。
+      保留，并去掉标记前缀；另一语言的标记行整行丢弃。保留前先把行内的
+      ``{{OPTIONAL}}`` 按语言展开为 ``【可选】``（zh）/ ``[Optional]``（en）。
     - 其余行（命令、代码块、空行、include 指令、普通说明等）原样保留，
       视为中英共用。
 
@@ -109,10 +118,47 @@ def filter_lang(text, lang):
         m = LANG_LINE_RE.match(line)
         if m:
             if m.group(1) == lang:
-                out.append(m.group(2))
+                body = m.group(2)
+                if "{{OPTIONAL}}" in body:
+                    body = body.replace(
+                        "{{OPTIONAL}}", "【可选】" if lang == "zh" else "[Optional]"
+                    )
+                out.append(body)
         else:
             out.append(line)
     return "\n".join(out)
+
+
+STEP_RE = re.compile(r"\{\{\s*STEP(_GROUP|_ALT)?\s*\}\}")
+
+
+def number_steps(text):
+    """按文档顺序为步骤占位符分配序号（inline + filter_lang 之后调用）。
+
+    - {{STEP}}      普通顺序步骤：大号 +1，无字母 → 01, 02, ...
+    - {{STEP_GROUP}} 并行“二选一”组的首个选项：大号 +1，字母 A → 02-A
+    - {{STEP_ALT}}   同组后续选项：大号不变，字母递增 → 02-B, 02-C
+    序号统一 2 位补零。可选步骤（无占位符）不消耗序号，排在编号步骤之间但不带数字。
+    因 zh/en 两版来自同一 src、同一 include 顺序，占位符出现顺序一致 → 两版序号相同。
+    """
+    major = 0
+    sub = 0
+
+    def repl(m):
+        nonlocal major, sub
+        kind = m.group(1)
+        if kind is None:  # {{STEP}}
+            major += 1
+            sub = 0
+            return f"{major:02d}"
+        if kind == "_GROUP":  # {{STEP_GROUP}}
+            major += 1
+            sub = 1
+            return f"{major:02d}-A"
+        sub += 1  # {{STEP_ALT}}
+        return f"{major:02d}-{chr(ord('A') + sub - 1)}"
+
+    return STEP_RE.sub(repl, text)
 
 
 def resolve(rel):
@@ -294,8 +340,12 @@ def main():
 
             # 2. 递归内联 include
             out = inline(text, set())
-            # 2.5 按目标语言过滤行（去掉另一语言的 <!-- zh -->/<!-- en --> 标记行）
+            # 2.5 按目标语言过滤行（去掉另一语言的 <!-- zh -->/<!-- en --> 标记行，
+            #     并把行内 {{OPTIONAL}} 按语言展开为【可选】/[Optional]）
             out = filter_lang(out, lang)
+            # 2.6 步骤自动编号：按文档顺序为 {{STEP}}/{{STEP_GROUP}}/{{STEP_ALT}}
+            #     分配 2 位补零序号（zh/en 两版序号一致）
+            out = number_steps(out)
 
             # 3. 变量替换（内联之后，确保片段内的 {{VAR}} 也被替换）
             out = substitute_vars(out, vars_dict, build_time)

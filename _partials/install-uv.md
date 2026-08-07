@@ -1,5 +1,5 @@
-<!-- zh --> ## 4. ⚡ 安装uv并配置uv国内镜像
-<!-- en --> ## 4. ⚡ Install uv and Configure uv Mirror (China)
+<!-- zh --> ## {{STEP}}. ⚡ 安装uv并配置uv国内镜像
+<!-- en --> ## {{STEP}}. ⚡ Install uv and Configure uv Mirror (China)
 
 <!-- zh --> uv速度飞快，且节省缓存空间，强烈推荐替代pip
 <!-- en --> uv is extremely fast and saves cache space; highly recommended as a pip replacement.

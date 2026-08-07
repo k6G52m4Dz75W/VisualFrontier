@@ -13,9 +13,9 @@ tags:
 
 # 🛠️ DeepSeek-OCR Windows WSL本地安装部署指南
 
-🕒 最后更新：`2026.8.6`
+🕒 最后更新：`2026.8.7`
 
-## 0. 💻 安装/更新nvidia驱动程序
+## 01. 💻 安装/更新nvidia驱动程序
 
 访问官方网站入口，选择GeForce，下载最新驱动程序
 
@@ -25,7 +25,7 @@ tags:
 > 当前最新版本：`610.74`
 > 当前最新版本直接下载链接：<https://cn.download.nvidia.com/Windows/610.74/610.74-desktop-win10-win11-64bit-international-dch-whql.exe>
 
-## 1. 🪟 安装WSL
+## 02. 🪟 安装WSL
 
 以管理员权限启动Powershell，安装WSL
 
@@ -35,13 +35,13 @@ wsl --install
 
 等待自动安装完成
 
-## 2. 🐧 启动Ubuntu
+## 03. 🐧 启动Ubuntu
 
 点击开始菜单中的Ubuntu图标启动它
 
 ![Ubuntu图标](Ubuntu.png)
 
-## 3. 🐍 安装miniconda并配置conda和pip国内镜像
+## 04. 🐍 安装miniconda并配置conda和pip国内镜像
 
 在Ubuntu的命令行界面中输入或复制粘贴以下整段代码回车即可直接运行，无需逐行复制粘贴，下同
 
@@ -68,7 +68,7 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 pip config set install.trusted-host pypi.tuna.tsinghua.edu.cn
 ```
 
-## 4. ⚡ 安装uv并配置uv国内镜像
+## 05. ⚡ 安装uv并配置uv国内镜像
 
 uv速度飞快，且节省缓存空间，强烈推荐替代pip
 
@@ -82,7 +82,7 @@ echo 'export UV_DEFAULT_INDEX="https://pypi.tuna.tsinghua.edu.cn/simple"' >> ~/.
 source ~/.bashrc
 ```
 
-## 5. ☁️ 安装modelscope
+## 06. ☁️ 安装modelscope
 
 国内首选使用modelscope，简单直接，不用考虑hf下载速度慢和受限制问题
 
@@ -102,7 +102,7 @@ echo 'export HF_ENDPOINT=https://hf-mirror.com' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-## 6. 📥 下载模型权重
+## 07. 📥 下载模型权重
 
 ```bash
 modelscope download --model deepseek-ai/DeepSeek-OCR
@@ -115,7 +115,7 @@ modelscope download --model deepseek-ai/DeepSeek-OCR
 hf download deepseek-ai/DeepSeek-OCR
 ```
 
-## 7. 🌱 安装并激活环境
+## 08. 🌱 安装并激活环境
 
 使用官方推荐python版本创建环境
 
@@ -124,7 +124,7 @@ conda create -n deepseek-ocr python=3.12.9 -y
 conda activate deepseek-ocr
 ```
 
-## 8. ⚙️ 安装cuda-toolkit并设置环境变量
+## 09. ⚙️ 安装cuda-toolkit并设置环境变量
 
 ```bash
 # 安装最新版本的cuda-toolkit
@@ -141,7 +141,7 @@ conda deactivate
 conda activate deepseek-ocr
 ```
 
-## 9. 🚀 安装vLLM及后端
+## 10. 🚀 安装vLLM及后端
 
 注意：**不要**遵照官方的安装流程执行安装，那仅适用于当时的版本状况，尤其
 
@@ -157,7 +157,7 @@ conda activate deepseek-ocr
 uv pip install -U vllm --torch-backend auto
 ```
 
-## 10. 🌐 启动vLLM服务
+## 11. 🌐 启动vLLM服务
 
 启动vLLM服务后，可以通过OpenAI兼容接口直接访问：<http://127.0.0.1:8000/>
 

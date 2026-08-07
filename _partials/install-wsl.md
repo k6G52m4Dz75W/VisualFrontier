@@ -1,5 +1,5 @@
-<!-- zh --> ## 1. 🪟 安装WSL
-<!-- en --> ## 1. 🪟 Install WSL
+<!-- zh --> ## {{STEP}}. 🪟 安装WSL
+<!-- en --> ## {{STEP}}. 🪟 Install WSL
 
 <!-- zh --> 以管理员权限启动Powershell，安装WSL
 <!-- en --> Launch PowerShell as administrator and install WSL:

@@ -1,5 +1,5 @@
-<!-- zh --> ## 8. ⚙️ 安装cuda-toolkit并设置环境变量
-<!-- en --> ## 8. ⚙️ Install CUDA Toolkit and Set Environment Variables
+<!-- zh --> ## {{STEP}}. ⚙️ 安装cuda-toolkit并设置环境变量
+<!-- en --> ## {{STEP}}. ⚙️ Install CUDA Toolkit and Set Environment Variables
 
 ```bash
 <!-- zh --> # 安装最新版本的cuda-toolkit

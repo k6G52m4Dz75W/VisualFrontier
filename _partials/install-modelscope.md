@@ -1,5 +1,5 @@
-<!-- zh --> ## 5. ☁️ 安装modelscope
-<!-- en --> ## 5. ☁️ Install modelscope
+<!-- zh --> ## {{STEP}}. ☁️ 安装modelscope
+<!-- en --> ## {{STEP}}. ☁️ Install modelscope
 
 <!-- zh --> 国内首选使用modelscope，简单直接，不用考虑hf下载速度慢和受限制问题
 <!-- en --> For users in China, modelscope is the preferred choice – straightforward, no worries about slow Hugging Face downloads or restrictions.
@@ -8,8 +8,8 @@
 pip install modelscope
 ```
 
-<!-- zh --> ### 🤗 【可选】安装huggingface并配置国内huggingface国内镜像
-<!-- en --> ### 🤗 [Optional] Install Hugging Face Hub and Configure Mirror (China)
+<!-- zh --> ### 🤗 {{OPTIONAL}}安装huggingface并配置国内huggingface国内镜像
+<!-- en --> ### 🤗 {{OPTIONAL}} Install Hugging Face Hub and Configure Mirror (China)
 
 ```bash
 <!-- zh --> # 安装huggingface

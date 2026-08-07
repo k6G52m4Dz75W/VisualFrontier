@@ -1,5 +1,5 @@
-<!-- zh --> ## 0. 💻 安装/更新nvidia驱动程序
-<!-- en --> ## 0. 💻 Install/Update NVIDIA Drivers
+<!-- zh --> ## {{STEP}}. 💻 安装/更新nvidia驱动程序
+<!-- en --> ## {{STEP}}. 💻 Install/Update NVIDIA Drivers
 
 <!-- zh --> 访问官方网站入口，选择GeForce，下载最新驱动程序
 <!-- en --> Visit the official website entry, select GeForce, and download the latest driver.

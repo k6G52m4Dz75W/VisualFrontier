@@ -15,7 +15,7 @@ tags:
 
 🕒 Last updated: `2026-8-7`
 
-## 0. 💻 Install/Update NVIDIA Drivers
+## 01. 💻 Install/Update NVIDIA Drivers
 
 Visit the official website entry, select GeForce, and download the latest driver.
 
@@ -25,7 +25,7 @@ Visit the official website entry, select GeForce, and download the latest driver
 > Current latest version: `610.74`
 > Direct download link for the latest version: <https://cn.download.nvidia.com/Windows/610.74/610.74-desktop-win10-win11-64bit-international-dch-whql.exe>
 
-## 1. 🪟 Install WSL
+## 02. 🪟 Install WSL
 
 Launch PowerShell as administrator and install WSL:
 
@@ -35,13 +35,13 @@ wsl --install
 
 Wait for the automatic installation to complete.
 
-## 2. 🐧 Start Ubuntu
+## 03. 🐧 Start Ubuntu
 
 Click the Ubuntu icon in the Start menu to launch it.
 
 ![Ubuntu icon](Ubuntu.png)
 
-## 3. 🐍 Install Miniconda and Configure Conda and Pip Mirrors (China)
+## 04. 🐍 Install Miniconda and Configure Conda and Pip Mirrors (China)
 
 In the Ubuntu command line, enter or copy-paste the entire block below and press Enter to run it directly. No need to copy line by line; same applies below.
 
@@ -68,7 +68,7 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 pip config set install.trusted-host pypi.tuna.tsinghua.edu.cn
 ```
 
-## 4. ⚡ Install uv and Configure uv Mirror (China)
+## 05. ⚡ Install uv and Configure uv Mirror (China)
 
 uv is extremely fast and saves cache space; highly recommended as a pip replacement.
 
@@ -82,7 +82,7 @@ echo 'export UV_DEFAULT_INDEX="https://pypi.tuna.tsinghua.edu.cn/simple"' >> ~/.
 source ~/.bashrc
 ```
 
-## 5. ☁️ Install modelscope
+## 06. ☁️ Install modelscope
 
 For users in China, modelscope is the preferred choice – straightforward, no worries about slow Hugging Face downloads or restrictions.
 
@@ -102,7 +102,7 @@ echo 'export HF_ENDPOINT=https://hf-mirror.com' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-## 6. 📥 Download Model Weights
+## 07. 📥 Download Model Weights
 
 ```bash
 modelscope download --model deepseek-ai/DeepSeek-OCR
@@ -115,7 +115,7 @@ modelscope download --model deepseek-ai/DeepSeek-OCR
 hf download deepseek-ai/DeepSeek-OCR
 ```
 
-## 7. 🌱 Create and Activate Conda Environment
+## 08. 🌱 Create and Activate Conda Environment
 
 Create a conda environment using the recommended Python version.
 
@@ -124,7 +124,7 @@ conda create -n deepseek-ocr python=3.12.9 -y
 conda activate deepseek-ocr
 ```
 
-## 8. ⚙️ Install CUDA Toolkit and Set Environment Variables
+## 09. ⚙️ Install CUDA Toolkit and Set Environment Variables
 
 ```bash
 # Install the latest CUDA toolkit
@@ -141,7 +141,7 @@ conda deactivate
 conda activate deepseek-ocr
 ```
 
-## 9. 🚀 Install vLLM and Backend
+## 10. 🚀 Install vLLM and Backend
 
 **Important:** Do **not** follow the official installation instructions – they are only valid for older versions. In particular:
 
@@ -157,7 +157,7 @@ The following approach is the current best practice:
 uv pip install -U vllm --torch-backend auto
 ```
 
-## 10. 🌐 Start the vLLM Server
+## 11. 🌐 Start the vLLM Server
 
 Once the vLLM server is running, you can access it via the OpenAI-compatible endpoint: <http://127.0.0.1:8000/>
 

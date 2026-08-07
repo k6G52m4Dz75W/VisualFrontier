@@ -1,5 +1,5 @@
-<!-- zh --> ## 3. 🐍 安装miniconda并配置conda和pip国内镜像
-<!-- en --> ## 3. 🐍 Install Miniconda and Configure Conda and Pip Mirrors (China)
+<!-- zh --> ## {{STEP}}. 🐍 安装miniconda并配置conda和pip国内镜像
+<!-- en --> ## {{STEP}}. 🐍 Install Miniconda and Configure Conda and Pip Mirrors (China)
 
 <!-- zh --> 在Ubuntu的命令行界面中输入或复制粘贴以下整段代码回车即可直接运行，无需逐行复制粘贴，下同
 <!-- en --> In the Ubuntu command line, enter or copy-paste the entire block below and press Enter to run it directly. No need to copy line by line; same applies below.
