@@ -333,6 +333,13 @@ def main():
             vars_path = extract_vars_path(text)
             vars_dict = load_vars(vars_path) if vars_path else {}
 
+            # 1.4 合并跨文档共享变量（_partials/vars/shared.yml，可选）：
+            #     如 NVIDIA 驱动版本这类「所有文档共用、随刷新脚本更新」的变量，
+            #     集中放一处，所有文档自动可用，避免在每个模型 vars 里重复。
+            #     文档专属 vars 优先级更高（本字典先建，shared 后 update，
+            #     但 shared 只含 NVIDIA_* 键，不会与 MODEL_NAME 等冲突）。
+            vars_dict.update(load_vars("_partials/vars/shared.yml"))
+
             # 1.5 注入内置自动变量（日期等）；用户 yml 同名变量可覆盖
             #     日期统一取「本次 build 时间」，即重新生成那一刻的日期。
             out_path = os.path.join(dirpath, fn[: -len(".src.md")] + ".md")

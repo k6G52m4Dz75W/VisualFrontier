@@ -9,7 +9,9 @@
 <!-- zh --> - 全球官网：<https://www.nvidia.com/en-us/drivers/>
 <!-- en --> - Global official site: <https://www.nvidia.com/en-us/drivers/>
 
-<!-- zh --> > 当前最新版本：`610.74`
-<!-- en --> > Current latest version: `610.74`
-<!-- zh --> > 当前最新版本直接下载链接：<https://cn.download.nvidia.com/Windows/610.74/610.74-desktop-win10-win11-64bit-international-dch-whql.exe>
-<!-- en --> > Direct download link for the latest version: <https://cn.download.nvidia.com/Windows/610.74/610.74-desktop-win10-win11-64bit-international-dch-whql.exe>
+<!-- zh --> > 当前最新版本：`{{NVIDIA_DRIVER_VERSION}}`
+<!-- en --> > Current latest version: `{{NVIDIA_DRIVER_VERSION}}`
+<!-- zh --> > 中国镜像直链：<{{NVIDIA_DRIVER_URL_CN}}>
+<!-- en --> > China mirror direct link: <{{NVIDIA_DRIVER_URL_CN}}>
+<!-- zh --> > 全球直链：<{{NVIDIA_DRIVER_URL_US}}>
+<!-- en --> > Global direct link: <{{NVIDIA_DRIVER_URL_US}}>

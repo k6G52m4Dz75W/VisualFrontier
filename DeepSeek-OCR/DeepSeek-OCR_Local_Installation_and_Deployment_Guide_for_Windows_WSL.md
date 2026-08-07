@@ -22,8 +22,9 @@ tags:
 - 中文官网：<https://www.nvidia.cn/drivers/>
 - 全球官网：<https://www.nvidia.com/en-us/drivers/>
 
-> 当前最新版本：`610.74`
-> 当前最新版本直接下载链接：<https://cn.download.nvidia.com/Windows/610.74/610.74-desktop-win10-win11-64bit-international-dch-whql.exe>
+> 当前最新版本：`610.88`
+> 中国镜像直链：<https://cn.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe>
+> 全球直链：<https://us.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe>
 
 ## 02. 🪟 安装WSL
 

@@ -22,8 +22,9 @@ Visit the official website entry, select GeForce, and download the latest driver
 - Chinese official site: <https://www.nvidia.cn/drivers/>
 - Global official site: <https://www.nvidia.com/en-us/drivers/>
 
-> Current latest version: `610.74`
-> Direct download link for the latest version: <https://cn.download.nvidia.com/Windows/610.74/610.74-desktop-win10-win11-64bit-international-dch-whql.exe>
+> Current latest version: `610.88`
+> China mirror direct link: <https://cn.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe>
+> Global direct link: <https://us.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe>
 
 ## 02. 🪟 Install WSL
 
