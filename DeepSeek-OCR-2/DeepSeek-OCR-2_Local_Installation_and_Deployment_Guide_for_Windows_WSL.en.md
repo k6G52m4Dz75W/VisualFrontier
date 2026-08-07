@@ -33,7 +33,7 @@ Visit the official website entry, select GeForce, and download the latest driver
 If you are comfortable with the command line (headless, remote server, or automation), copy the command below to fetch the installer directly. The `Referer` header is built in to bypass NVIDIA CDN's 403 hotlink restriction — just paste and run it in a terminal:
 
 ```bash
-curl -L --referer "https://www.nvidia.cn/" -o nvidia-driver.exe "https://cn.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe"
+curl -L --referer "https://www.nvidia.cn/" -O "https://cn.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe"
 ```
 
 ## 02. 🪟 Install WSL

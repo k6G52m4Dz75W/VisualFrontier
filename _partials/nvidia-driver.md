@@ -26,5 +26,5 @@
 <!-- en --> If you are comfortable with the command line (headless, remote server, or automation), copy the command below to fetch the installer directly. The `Referer` header is built in to bypass NVIDIA CDN's 403 hotlink restriction — just paste and run it in a terminal:
 
 ```bash
-curl -L --referer "https://www.nvidia.cn/" -o nvidia-driver.exe "{{NVIDIA_DRIVER_URL_CN}}"
+curl -L --referer "https://www.nvidia.cn/" -O "{{NVIDIA_DRIVER_URL_CN}}"
 ```

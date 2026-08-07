@@ -33,7 +33,7 @@ tags:
 如果你熟悉命令行（无图形界面、远程服务器或想写进自动化脚本），可复制下方命令直接拉取安装包。命令已内置 `Referer` 请求头，可绕过 NVIDIA CDN 的 403 热链限制，在终端粘贴执行即可：
 
 ```bash
-curl -L --referer "https://www.nvidia.cn/" -o nvidia-driver.exe "https://cn.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe"
+curl -L --referer "https://www.nvidia.cn/" -O "https://cn.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe"
 ```
 
 ## 02. 🪟 安装WSL
