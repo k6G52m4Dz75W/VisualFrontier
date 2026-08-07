@@ -4,17 +4,13 @@
 <!-- zh --> 访问官方网站入口，选择GeForce，下载最新驱动程序
 <!-- en --> Visit the official website entry, select GeForce, and download the latest driver.
 
-<!-- zh --> - 中国官网（推荐）：<https://www.nvidia.cn/drivers/>
-<!-- en --> - Global official site (recommended): <https://www.nvidia.com/en-us/drivers/>
-<!-- zh --> - 全球官网：<https://www.nvidia.com/en-us/drivers/>
-<!-- en --> - Chinese official site: <https://www.nvidia.cn/drivers/>
+<!-- zh --> - 中国官网：<https://www.nvidia.cn/drivers/>
+<!-- en --> - Global official site: <https://www.nvidia.com/en-us/drivers/>
 
 <!-- zh --> > 当前最新版本：`{{NVIDIA_DRIVER_VERSION}}`
 <!-- en --> > Current latest version: `{{NVIDIA_DRIVER_VERSION}}`
-<!-- zh --> > 官方下载页（中国，推荐）：<{{NVIDIA_DRIVER_PAGE_CN}}>
-<!-- en --> > Official download page (Global, recommended): <{{NVIDIA_DRIVER_PAGE_US}}>
-<!-- zh --> > 官方下载页（全球）：<{{NVIDIA_DRIVER_PAGE_US}}>
-<!-- en --> > Official download page (China): <{{NVIDIA_DRIVER_PAGE_CN}}>
+<!-- zh --> > 官方下载页：<{{NVIDIA_DRIVER_PAGE_CN}}>
+<!-- en --> > Official download page: <{{NVIDIA_DRIVER_PAGE_US}}>
 
 <!-- zh --> > 💡 在下载页中点击 **下载** 按钮即可下载（页面自带合法 Referer，不会报 403）。
 <!-- en --> > 💡 Click the **Download** button on the page to download (the page provides a valid Referer, so no 403).
