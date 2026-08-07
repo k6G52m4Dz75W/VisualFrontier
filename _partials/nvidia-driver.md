@@ -4,10 +4,10 @@
 <!-- zh --> 访问官方网站入口，选择GeForce，下载最新驱动程序
 <!-- en --> Visit the official website entry, select GeForce, and download the latest driver.
 
-<!-- zh --> - 中国官网：<https://www.nvidia.cn/drivers/>
-<!-- en --> - Chinese official site: <https://www.nvidia.cn/drivers/>
+<!-- zh --> - 中国官网（推荐）：<https://www.nvidia.cn/drivers/>
+<!-- en --> - Global official site (recommended): <https://www.nvidia.com/en-us/drivers/>
 <!-- zh --> - 全球官网：<https://www.nvidia.com/en-us/drivers/>
-<!-- en --> - Global official site: <https://www.nvidia.com/en-us/drivers/>
+<!-- en --> - Chinese official site: <https://www.nvidia.cn/drivers/>
 
 <!-- zh --> > 当前最新版本：`{{NVIDIA_DRIVER_VERSION}}`
 <!-- en --> > Current latest version: `{{NVIDIA_DRIVER_VERSION}}`

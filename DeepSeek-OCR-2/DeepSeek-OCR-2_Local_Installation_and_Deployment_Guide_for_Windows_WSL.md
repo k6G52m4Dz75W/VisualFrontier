@@ -19,7 +19,7 @@ tags:
 
 访问官方网站入口，选择GeForce，下载最新驱动程序
 
-- 中国官网：<https://www.nvidia.cn/drivers/>
+- 中国官网（推荐）：<https://www.nvidia.cn/drivers/>
 - 全球官网：<https://www.nvidia.com/en-us/drivers/>
 
 > 当前最新版本：`610.88`
