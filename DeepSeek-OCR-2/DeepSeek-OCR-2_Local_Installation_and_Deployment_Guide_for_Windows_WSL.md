@@ -23,8 +23,11 @@ tags:
 - 全球官网：<https://www.nvidia.com/en-us/drivers/>
 
 > 当前最新版本：`610.88`
-> 中国镜像直链：<https://cn.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe>
-> 全球直链：<https://us.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe>
+> 官方下载页（中国，推荐）：<https://www.nvidia.cn/zh-cn/drivers/details/274384/>
+> 官方下载页（全球，推荐）：<https://www.nvidia.com/en-us/drivers/details/274384/>
+> 备用裸直链（中国）：<https://cn.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe>
+> 备用裸直链（全球）：<https://us.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe>
+> ⚠️ 备用裸直链受 NVIDIA CDN 的 Referer 热链保护，若直接点击报 `403 Forbidden`，请改从上方官方下载页点击 **Download** 按钮下载。
 
 ## 02. 🪟 安装WSL
 

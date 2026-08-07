@@ -1,5 +1,11 @@
 # 跨文档共享变量（由 scripts/fetch_nvidia_driver.py 一键查询更新）
 # 所有文档（DeepSeek-OCR / DeepSeek-OCR-2 的中英文）自动引用，无需各自重复。
+#
+# 注意：裸 .exe 直链（URL_CN / URL_US）受 NVIDIA CDN 的 Referer 热链保护，
+# 从文档直接点击可能报 403 Forbidden；请优先使用下方官方下载页（PAGE_*），
+# 在页面上点 Download 按钮即可正常下载。
 NVIDIA_DRIVER_VERSION: 610.88
+NVIDIA_DRIVER_PAGE_CN: https://www.nvidia.cn/zh-cn/drivers/details/274384/
+NVIDIA_DRIVER_PAGE_US: https://www.nvidia.com/en-us/drivers/details/274384/
 NVIDIA_DRIVER_URL_CN: https://cn.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe
 NVIDIA_DRIVER_URL_US: https://us.download.nvidia.com/Windows/610.88/610.88-desktop-win10-win11-64bit-international-dch-whql.exe
