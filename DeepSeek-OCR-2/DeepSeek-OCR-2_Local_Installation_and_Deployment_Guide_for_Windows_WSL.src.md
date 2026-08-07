@@ -16,16 +16,16 @@ vars: _partials/vars/deepseek-ocr-2.yml
 
 🕒 最后更新：`{{DATE_ZH}}`
 
-<!-- include: _partials/zh/nvidia-driver.md -->
-<!-- include: _partials/zh/install-wsl.md -->
-<!-- include: _partials/zh/start-ubuntu.md -->
-<!-- include: _partials/zh/install-miniconda.md -->
-<!-- include: _partials/zh/install-uv.md -->
-<!-- include: _partials/zh/install-modelscope.md -->
-<!-- include: _partials/zh/weights.md -->
-<!-- include: _partials/zh/env.md -->
+<!-- include: _partials/nvidia-driver.md -->
+<!-- include: _partials/install-wsl.md -->
+<!-- include: _partials/start-ubuntu.md -->
+<!-- include: _partials/install-miniconda.md -->
+<!-- include: _partials/install-uv.md -->
+<!-- include: _partials/install-modelscope.md -->
+<!-- include: _partials/weights.md -->
+<!-- include: _partials/env.md -->
 <!-- include: _partials/install-cuda.md -->
-<!-- include: _partials/zh/vllm.md -->
-<!-- include: _partials/zh/start-vllm.md -->
-<!-- include: _partials/zh/vibeocr.md -->
-<!-- include: _partials/zh/clone.md -->
+<!-- include: _partials/vllm.md -->
+<!-- include: _partials/start-vllm.md -->
+<!-- include: _partials/vibeocr.md -->
+<!-- include: _partials/clone.md -->

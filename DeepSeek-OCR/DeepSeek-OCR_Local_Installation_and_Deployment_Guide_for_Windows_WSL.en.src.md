@@ -16,19 +16,19 @@ vars: _partials/vars/deepseek-ocr.yml
 
 🕒 Last updated: `{{DATE_EN}}`
 
-<!-- include: _partials/en/nvidia-driver.md -->
-<!-- include: _partials/en/install-wsl.md -->
-<!-- include: _partials/en/start-ubuntu.md -->
-<!-- include: _partials/en/install-miniconda.md -->
-<!-- include: _partials/en/install-uv.md -->
-<!-- include: _partials/en/install-modelscope.md -->
-<!-- include: _partials/en/weights.md -->
-<!-- include: _partials/en/env.md -->
+<!-- include: _partials/nvidia-driver.md -->
+<!-- include: _partials/install-wsl.md -->
+<!-- include: _partials/start-ubuntu.md -->
+<!-- include: _partials/install-miniconda.md -->
+<!-- include: _partials/install-uv.md -->
+<!-- include: _partials/install-modelscope.md -->
+<!-- include: _partials/weights.md -->
+<!-- include: _partials/env.md -->
 <!-- include: _partials/install-cuda.md -->
-<!-- include: _partials/en/vllm.md -->
-<!-- include: _partials/en/start-vllm.md -->
-<!-- include: _partials/en/vibeocr.md -->
-<!-- include: _partials/en/clone.md -->
+<!-- include: _partials/vllm.md -->
+<!-- include: _partials/start-vllm.md -->
+<!-- include: _partials/vibeocr.md -->
+<!-- include: _partials/clone.md -->
 # ⚠️ Notes
 
 Whether you follow the official installation guide, use the intelligent vLLM installation described above, or use the model deployed via the SiliconFlow platform service, this model is highly likely to randomly produce garbled text, omit content, or repeat large passages. It is strongly recommended to use the upgraded [DeepSeek-OCR-2](https://github.com/deepseek-ai/DeepSeek-OCR-2) model as a replacement.
